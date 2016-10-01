@@ -26,7 +26,13 @@ class Calculator
 # highest prime number under 10 is 7.
 
   def highest_prime_number_under(number)
-
+    answer = 0
+    (0..(number-1)).each do |digit|
+      if is_prime?(digit) == true
+        answer = digit
+      end
+    end
+    answer
   end
 end
 
@@ -68,6 +74,21 @@ RSpec.describe Calculator do
     end
     it "should return true if number is 997" do
       expect(calculator.is_prime?(997)).to be true
+    end
+  end
+end
+
+RSpec.describe Calculator do
+  let(:calculator) { Calculator.new}
+  describe '#highest_prime_number_under?' do
+    it "should return 3 if number is 4" do
+      expect(calculator.highest_prime_number_under(4)).to eq(3)
+    end
+    it "should return 997 if number is 998" do
+      expect(calculator.highest_prime_number_under(998)).to eq(997)
+    end
+    it "should return 7 if number is 10" do
+      expect(calculator.highest_prime_number_under(10)).to eq(7)
     end
   end
 end
